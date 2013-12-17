@@ -123,6 +123,12 @@ var aryHover = [
 ];
 
 // カテゴリID
+var aryCidB = ["bh", "bb", "ba", "bl"];
+var aryCidA = ["am", "as", "ae", "ap"];
+var aryCidH = ["hm", "hs", "he", "hp"];
+var aryCidS = ["sm", "ss", "se", "sp"];
+var aryCidP = ["pm", "ps", "pe", "pp"];
+
 var aryCid = [
 	aryCidB[0], aryCidB[1], aryCidB[2], aryCidB[3],
 	aryCidA[0], aryCidA[1], aryCidA[2], aryCidA[3],
@@ -131,12 +137,6 @@ var aryCid = [
 	aryCidP[0], aryCidP[1], aryCidP[2], aryCidP[3],
 	"cp"
 ];
-
-var aryCidB = ["bh", "bb", "ba", "bl"];
-var aryCidA = ["am", "as", "ae", "ap"];
-var aryCidH = ["hm", "hs", "he", "hp"];
-var aryCidS = ["sm", "ss", "se", "sp"];
-var aryCidP = ["pm", "ps", "pe", "pp"];
 
 var aryCsvFile = [
 	'bw_b1.csv', 'bw_b2.csv', 'bw_b3.csv', 'bw_b4.csv',
