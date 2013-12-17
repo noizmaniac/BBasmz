@@ -1,0 +1,279 @@
+﻿doctype html
+html
+	head
+		title 【BBasmz】
+		meta charset="UTF-8"
+		meta name="author" content="zinya2dx"
+		meta http-equiv="content-language" content="ja"
+		meta http-equiv="Cache-Control" content="no-cache"
+		link rel="stylesheet" type="text/css" href="bbasmz.css"
+		javascript:
+			var ua = window.navigator.userAgent;
+			var ie = ua.indexOf("MSIE ");
+			if(ie>0){
+				var vs = parseInt(ua.substring(ie+5, ua.indexOf(".", ie)));
+				if(vs<9){
+					alert("BBasmz は InternetExplorer 9 以降より使用することができます。");
+				}
+			}
+		script src="//code.jquery.com/jquery-2.0.3.min.js"
+		script src="jquery.csv.js"
+		script src="jquery.tablesorter.min.js"
+		script src="jquery.cookie.js"
+		script src="//platform.twitter.com/widgets.js"
+		script src="bbasmz.js"
+		javascript:
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-178327-3']);
+			_gaq.push(['_setDomainName', 'expz.net']);
+			_gaq.push(['_trackPageview']);
+			(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+
+	body
+		div id="div_body"
+			div id="navi"
+				table border="1" class="headertable"
+					tr
+						td style="padding:0px; margin:0px; vertical-align:middle;"
+							table border="0" style="padding:0px; margin:0px; vertical-align:middle;"
+								tr
+									td colspan="2"
+										span class="spanlink" id="toplink" onclick="viewComment()" BBasmz (Border Break[©SEGA] Assemble simulatorz)
+								tr
+									td
+										| &nbsp;Ver.3.5対応 - 
+										div class="divbtn" id="btnReset" onclick="reset();" リセット
+										| &nbsp;
+										div class="divbtn" id="btnURL" onclick="outputURL();" URL出力
+										| &nbsp;
+										div class="divbtn" id="chkSpeed" onclick="chkSpeed()" 速度：km/h
+									td
+										div id="buttonTweet"
+								tr
+									td colspan="2"
+										div class="btnsv1" id="btnSave11" onclick="saveAsm(1);" Save:1
+										| &nbsp;
+										div class="btnsv1" id="btnSave12" onclick="loadAsm(1);" Load:1
+										- for x in 2..4 do
+											| &#58;&nbsp;
+											div class="btnsv2" id="btnSave#{x}1" onclick="saveAsm(#{x});" S:#{x}
+											| &nbsp;
+											div class="btnsv2" id="btnSave#{x}2" onclick="loadAsm(#{x});" L:#{x}
+
+				table border="0" width="100%"
+					tr
+						td colspan="2"
+							table border="0" class="naviInner" cellpadding="0"
+								tr
+									- aryHeader = ["頭部","胴体","腕部","脚部"]
+									- for x in aryHeader do
+										td
+											| #{x}
+										td
+											| &nbsp;
+
+								- ary11 = [ ["装","装","装","装"], ["射","ブ","反","歩"], ["索","SP","リ","ダ"], ["ロ","エ","変","重"], ["チ","チ","チ","チ"] ]
+								- for x in 0..ary11.length - 1 do
+									tr
+										td
+											| #{ary11[x][0]}：
+										td
+											div id="xh#{x}"
+										td
+											| #{ary11[x][1]}：
+										td
+											div id="xh#{x+5}"
+										td
+											| #{ary11[x][2]}：
+										td
+											div id="xh#{x+10}"
+										td
+											| #{ary11[x][3]}：
+										td
+											div id="xh#{x+15}"
+
+					- aryCat1 = ["【機体】", "【強襲】", "【重火力】", "【狙撃】", "【支援】", "【チップ】", "【その他】" ]
+					tr
+						td class="naviHeight"
+							| #{aryCat1[0]}
+							table border="0" class="naviInner" cellpadding="0"
+								tr
+									td width="62px"
+										| チップ容量
+									td width="8px"
+										| ：
+									td width="50px"
+										div id="nChipBefore1"
+									td width="8px"
+										| →
+									td width="50px"
+										div id="nChipAfter"
+
+								- ary21 = ["装甲", "重量", "積載猶予"]
+								- ary22 = ["nArmorValBefore",	"nWeightAllBefore",	"nWeightGraceBefore"]
+								- ary23 = ["nArmorValAfter",	"nWeightAllAfter",	"nWeightGraceAfter"]
+								- for x in 0..2 do
+									tr
+										td
+											| #{ary21[x]}
+										td
+											| ：
+										td
+											div id="#{ary22[x]}"
+										td
+											| →
+										td
+											div id="#{ary23[x]}"
+
+								tr
+									td
+										| フルセット
+									td
+										| ：
+									td colspan=3
+										div id="nFullSet"
+
+						td
+							table border="0"
+								- ary24 = ["頭", "胴", "腕", "脚"]
+								- ary25 = ["bh", "bb", "ba", "bl"]
+								- for x in 0..3 do
+									tr
+										td
+											| #{ary24[x]}：
+										td
+											input type="button" id="#{ary25[x]}" class="partsBtn" onclick="selectList('#{ary25[x]}')" value="#{x}"
+
+					- ary32 = ["a", "h", "s", "p"]
+					- ary33 = ["m", "s", "e", "p"]
+					- ary34 = ["主", "副", "補", "特"]
+					- for x in 0..3 do
+						tr
+							td class="naviHeight"
+								| #{aryCat1[x+1]}
+								table border="0" class="naviInner" cellpadding="0"
+									tr
+										td width="62px"
+											| 余剰重量
+										td width="8px"
+											| ：
+										td width="50px"
+											div id="#{ary32[x]}WeightBefore"
+										td width="8px"
+											| →
+										td width="50px"
+											div id="#{ary32[x]}WeightAfter"
+									tr
+										td colspan=2
+											| &nbsp;(超過)
+										td
+											div id="#{ary32[x]}PerBefore"
+										td
+											| →
+										td
+											div id="#{ary32[x]}PerAfter"
+									tr
+										td
+											span id="#{ary32[x]}DashDisp" 走[km/h]
+										td
+											| ：
+										td
+											div id="#{ary32[x]}DashBefore"
+										td
+											| →
+										td
+											div id="#{ary32[x]}DashAfter"
+									tr
+										td
+											span id="#{ary32[x]}WalkDisp" 歩[km/h]
+										td
+											| ：
+										td
+											div id="#{ary32[x]}WalkBefore"
+										td
+											| →
+										td
+											div id="#{ary32[x]}WalkAfter"
+							td
+								table border="0"
+									- for y in 0..3 do
+										tr
+											td
+												| #{ary34[y]}：
+											td
+												input type="button" id="#{ary32[x]}#{ary33[y]}" class="partsBtn" onclick="selectList('#{ary32[x]}#{ary33[y]}')" value="#{y}"
+
+					tr
+						td class="naviHeight"
+							| #{aryCat1[5]}
+							table border="0" class="naviInner" cellpadding="0"
+								tr
+										td width="62px"
+											| 総量
+										td width="8px"
+											| ：
+										td width="50px"
+											div id="nChipBefore2"
+										td width="8px"
+											| 計：
+										td width="50px"
+											div id="nChipAmount"
+												| 0
+							| #{aryCat1[6]}
+							table border="0" class="naviInner" cellpadding="0"
+								tr
+									td
+										input type="checkbox" id="etcsateN" onclick="chkEtc('sateN')"
+										|  サテバン　(重量800
+										span id="etcvalsateN"
+										| )
+								tr
+									td
+										input type="checkbox" id="etcsateR" onclick="chkEtc('sateR')"
+										|  サテバンR (重量1600
+										span id="etcvalsateR"
+										| )
+								tr
+									td
+										input type="checkbox" id="etcreq1" onclick="chkEtc('req1')"
+										|  バラム重機砲 (重量720
+										span id="etcvalreq1"
+										| )
+								tr
+									td
+										input type="checkbox" id="etcreq2" onclick="chkEtc('req2')"
+										|  爆撃通信機 (重量600
+										span id="etcvalreq2"
+										| )
+								tr
+									td
+										input type="checkbox" id="etcreq3" onclick="chkEtc('req3')"
+										|  オートガン (重量660
+										span id="etcvalreq3"
+										| )
+
+						td valign="top"
+							table border="0"
+								- aryChip = ["特殊機能", "機体強化(機体)", "機体強化(武器)", "アクション"]
+								- for x in 0..3 do
+									tr
+										td
+											| チ：
+										td
+											input type="button" id="cp#{x+1}" class="partsBtn" onclick="selectListChip(#{x+1})" value="チップ ： #{aryChip[x]}"
+
+								tr
+									td
+										| &nbsp;
+									td class="naviInner cplisttd" id="cplist"
+
+				tr
+					td class="naviHeight"
+
+		div id="contents"
+			table id="conttable" class="tablesorter"
+

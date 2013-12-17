@@ -1,0 +1,218 @@
+﻿body {
+	font-family : sans-serif;
+	
+	background: #FFFF00; /* Old browsers */
+	background: -moz-linear-gradient(top,  #FFFF00 42%, #fafac0 99%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(42%,#FFFF00), color-stop(99%,#fafac0)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #FFFF00 42%,#fafac0 99%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #FFFF00 42%,#fafac0 99%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #FFFF00 42%,#fafac0 99%); /* IE10+ */
+	background: linear-gradient(to bottom,  #FFFF00 42%,#fafac0 99%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFF00', endColorstr='#fafac0',GradientType=0 ); /* IE6-9 */	
+	
+	height: 1400px;
+}
+
+#div_body{
+	width: 1000px;
+}
+
+#navi{
+	float: left;
+	width: 390px;
+	background-color: #EDED30;
+	font-size: 12px;
+	margin-right: 2px;
+	position: static;
+	-webkit-box-shadow: 7px 8px 6px -6px #777;
+	   -moz-box-shadow: 7px 8px 6px -6px #777;
+	        box-shadow: 7px 8px 6px -6px #777;
+}
+
+#contents{
+	fload: left;
+	width: 1400px;
+	height: 100%;
+	position: absolute;
+	top: 8px;
+	left: 400px;
+}
+
+#conttable{
+	-webkit-box-shadow: 7px 8px 6px -6px #777;
+	   -moz-box-shadow: 7px 8px 6px -6px #777;
+	        box-shadow: 7px 8px 6px -6px #777;
+}
+
+.headertable{
+	width:100%;
+}
+
+/*右寄せ*/
+.rgt{
+	text-align: right;
+}
+
+.naviHeight{
+	width: 100%;
+	vertical-align: top;
+	padding: 0;
+	margin: 0;
+}
+
+.naviInner{
+	width: 100%;
+	background-color: #fafac0;
+	border: 1px solid #EEE;
+	padding: 1px;
+	margin: 0;
+}
+
+.br_parts{
+	width: 100px;
+	background-color: #BFBF30;
+}
+
+.headerBtn{
+	font-size: 8pt;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #999;
+	padding: 0px;
+	margin: 0px;
+	width: 60px;
+	height: 20px;
+	background-color: #fafac0;
+}
+
+.partsBtn{
+	font-size: 8pt;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #999;
+	padding: 0px;
+	width: 130px;
+	height: 20px;
+	background-color: #fafac0;
+	cursor: pointer;
+}
+
+.partsBtn:hover{
+	background-color: #EAEA30;
+}
+
+
+.conttableBtn{
+	font-size: 8pt;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #999;
+	padding: 0px;
+	width: 120px;
+	height: 100%;
+	background-color: #fafac0;
+}
+
+.conttableBtn:hover{
+	background-color: #EAEA30;
+}
+
+.conttableCheck{
+	font-size: 8pt;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #999;
+	padding: 0px;
+	width: 20px;
+	height: 100%;
+	background-color: #fafac0;
+}
+
+.cplisttd{
+	font-size: 8pt;
+}
+
+.divbtn{
+	font-size: 8pt;
+	text-align:center;
+	vertical-align: middle;
+	border: 1px solid #ccc;
+	background-color: #fafac0;
+	padding: 3px;
+	cursor: pointer;
+	display: inline-block; _display: inline;
+}
+
+.divbtn:hover{
+	background-color: #EAEA30;
+}
+
+.btnsv1{
+	font-size: 8pt;
+	text-align:center;
+	vertical-align: middle;
+	border: 1px solid #ccc;
+	background-color: #fafac0;
+	padding: 3px;
+	width: 42px;
+	cursor: pointer;
+	display: inline-block; _display: inline;
+}
+
+.btnsv1:hover{
+	background-color: #EAEA30;
+}
+
+.btnsv2{
+	font-size: 8pt;
+	text-align:center;
+	vertical-align: middle;
+	border: 1px solid #ccc;
+	background-color: #fafac0;
+	padding: 3px;
+	width: 30px;
+	cursor: pointer;
+	display: inline-block; _display: inline;
+}
+
+.btnsv2:hover{
+	background-color: #EAEA30;
+}
+
+.spanlink{
+	color: #00f;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+/* tables */
+table.tablesorter {
+	font-family:arial;
+	background-color: #fafac0;
+	margin:0px;
+	font-size: 8pt;
+	text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	background-color: #BFBF30;
+	border: 1px solid #7F2640;
+	padding: 0px;
+}
+table.tablesorter thead tr .header {
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+	background-color: #DFDF30;
+	color: #303030;
+}
+table.tablesorter tbody td {
+	color: #3D3D3D;
+	padding: 0px;
+	margin: 0px;
+	vertical-align: center;
+	border: 1px solid #7F2640;
+}
